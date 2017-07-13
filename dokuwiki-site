@@ -7,16 +7,21 @@ server {
 
 	root /var/www/html;
 
-	# Add index.php to the list if you are using PHP
-	index index.php index.html index.htm index.nginx-debian.html;
+	index doku.php index.html index.htm index.nginx-debian.html;
 
 	server_name _;
 
 	location / {
-		# First attempt to serve request as file, then
-		# as directory, then fall back to displaying a 404.
-		try_files $uri $uri/ =404;
+        # Try file, folder, then wiki
+		try_files $uri $uri/ @dokuwiki;
 	}
+
+    location @dokuwiki {
+        rewrite ^/_media/(.*) /lib/exe/fetch.php?media=$1 last;
+        rewrite ^/_detail/(.*) /lib/exe/detail.php?media=$1 last;
+        rewrite ^/_export/([^/]+)/(.*) /doku.php?do=export_$1&id=$2 last;
+        rewrite ^/(?!lib/)(.*) /doku.php?id=$1&$args last;
+    }
 
     # Protect the sensitive directories from external access
     location ~ /(conf|bin|inc)/ {
@@ -30,6 +35,7 @@ server {
 	# pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000
 	#
 	location ~ \.php$ {
+        if (!-f $request_filename) { return 404; }
 		include snippets/fastcgi-php.conf;
 		fastcgi_pass unix:/run/php/php7.0-fpm.sock;
 	}
