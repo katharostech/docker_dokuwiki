@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Substitute the MAX_UPLOAD_SIZE variable into the php.ini file
+sed -i s/\${MAX_UPLOAD_SIZE}/${MAX_UPLOAD_SIZE}/ /etc/php/7.0/fpm/php.ini
+
 # Start php-fpm
 echo "Starting php-fpm"
 php-fpm7.0

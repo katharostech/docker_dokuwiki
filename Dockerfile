@@ -39,6 +39,9 @@ RUN rm /etc/nginx/sites-enabled/default
 # Add our nginx configuration
 COPY dokuwiki-site /etc/nginx/sites-enabled/dokuwiki-site
 
+# Add our php configuration
+COPY php.ini /etc/php/7.0/fpm/php.ini
+
 # Make the PHP run dir
 RUN mkdir -p /run/php
 
