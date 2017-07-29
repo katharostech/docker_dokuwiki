@@ -14,6 +14,7 @@ If you want to persist your install and/or configuration, the important paths ar
 ```bash
 docker run --name dokuwiki \
 -p 80:80 \
+-e MAX_UPLOAD_SIZE=10M \
 -v wiki-data:/var/www/html/data \
 -v wiki-conf:/var/www/html/conf \
 katharostech/dokuwiki
