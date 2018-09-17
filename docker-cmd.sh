@@ -7,4 +7,4 @@ trap '/stop-container.sh; exit $?' TERM INT
 /start-container.sh
 
 # Wait for signal
-while true; do :; done
+while true; do sleep 1; done
