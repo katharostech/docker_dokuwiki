@@ -1,0 +1,47 @@
+---
+kind: pipeline
+name: build
+
+steps:
+  # Make sure image builds
+  - name: build
+    image: banzaicloud/drone-kaniko:0.3.2
+    settings:
+      build_args:
+        - DOKUWIKI_VERSION=2018-04-22b
+
+trigger:
+  ref:
+    exclude:
+      - refs/tags/v*
+  branch:
+    exclude:
+      - feature/*
+
+---
+kind: pipeline
+name: release
+
+steps:
+  - name: release
+    image: banzaicloud/drone-kaniko:0.3.2
+    settings:
+      repo: katharostech/dokuwiki
+      tags:
+        - stable_${DRONE_TAG}
+      build_args:
+        - DOKUWIKI_VERSION=2018-04-22b
+      username:
+        from_secret: docker-username
+      password:
+        from_secret: docker-password
+    when:
+      ref:
+        - refs/tags/v*
+
+trigger:
+  event:
+    - tag
+  ref:
+    - refs/tags/v*
+

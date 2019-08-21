@@ -23,12 +23,16 @@ RUN \
 # Make an alias for vi
 RUN echo "alias vi='busybox vi'" >> /root/.bashrc
 
+# Dokuwiki version build argument
+ARG DOKUWIKI_VERSION=stable
+ENV DOKUWIKI_VERSION=$DOKUWIKI_VERSION
+
 # Download Dokuwiki
 RUN \
   cd /var/www/html && \
-  wget https://download.dokuwiki.org/src/dokuwiki/dokuwiki-stable.tgz && \
-  tar -xf dokuwiki-stable.tgz && \
-  rm dokuwiki-stable.tgz && \
+  wget https://download.dokuwiki.org/src/dokuwiki/dokuwiki-${DOKUWIKI_VERSION}.tgz && \
+  tar -xf dokuwiki-${DOKUWIKI_VERSION}.tgz && \
+  rm dokuwiki-${DOKUWIKI_VERSION}.tgz && \
   mv dokuwiki-*/* . && \
   rm -rf dokuwiki-*/ && \
   chown -R www-data .
