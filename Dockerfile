@@ -13,8 +13,10 @@ RUN \
     nginx \
     php7.0 \
     php7.0-gd \
+    php7.0-ldap \
     php7.0-sqlite3 \
     php7.0-xml \
+    php7.0-zip \
     wget && \
   apt-get clean
 
