@@ -1,5 +1,7 @@
 # Dokuwiki Docker Image
 
+[![Build Status](https://cloud.drone.io/api/badges/katharostech/docker_dokuwiki/status.svg)](https://cloud.drone.io/katharostech/docker_dokuwiki)
+
 This is a simple Docker image for the free and open source Dokuwiki. It is built on top of Ubuntu and is running PHP 7 and Nginx.
 
 Dokuwiki is so simple to install that I have found no need for having environment variables for configuration. Everything can be done through the Dokuwiki UI as far as I am aware. :)
