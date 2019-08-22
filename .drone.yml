@@ -28,7 +28,7 @@ steps:
     settings:
       repo: katharostech/dokuwiki
       tags:
-        - stable_${DRONE_TAG}
+        - 2018-04-22b_${DRONE_TAG}
       build_args:
         - DOKUWIKI_VERSION=2018-04-22b
       username:
