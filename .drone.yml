@@ -8,7 +8,7 @@ steps:
     image: banzaicloud/drone-kaniko:0.3.2
     settings:
       build_args:
-        - DOKUWIKI_VERSION=2018-04-22b
+        - DOKUWIKI_VERSION=2018-04-22c
 
 trigger:
   ref:
@@ -28,9 +28,9 @@ steps:
     settings:
       repo: katharostech/dokuwiki
       tags:
-        - 2018-04-22b_${DRONE_TAG}
+        - 2018-04-22c_${DRONE_TAG}
       build_args:
-        - DOKUWIKI_VERSION=2018-04-22b
+        - DOKUWIKI_VERSION=2018-04-22c
       username:
         from_secret: docker-username
       password:
