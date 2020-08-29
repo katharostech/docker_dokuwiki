@@ -24,7 +24,7 @@ RUN \
 RUN echo "alias vi='busybox vi'" >> /root/.bashrc
 
 # Dokuwiki version build argument
-ARG DOKUWIKI_VERSION=stable
+ARG DOKUWIKI_VERSION=2018-04-22c
 ENV DOKUWIKI_VERSION=$DOKUWIKI_VERSION
 
 # Download Dokuwiki
